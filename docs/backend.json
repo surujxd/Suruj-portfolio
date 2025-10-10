@@ -1,0 +1,68 @@
+{
+  "entities": {
+    "ContactMessage": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ContactMessage",
+      "type": "object",
+      "description": "Represents a contact message received from a visitor.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the contact message."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the person sending the message.",
+          "format": "email"
+        },
+        "message": {
+          "type": "string",
+          "description": "The content of the message."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the message was created.",
+          "format": "date-time"
+        },
+        "isRead": {
+          "type": "boolean",
+          "description": "Indicates whether the message has been read by the admin."
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "message",
+        "createdAt",
+        "isRead"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}/contactInfo",
+        "definition": {
+          "entityName": "ContactMessage",
+          "schema": {
+            "$ref": "#/backend/entities/ContactMessage"
+          },
+          "description": "Collection to store contact information for each user. Includes denormalized 'userId' for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "Based on the user's request to remove the contact form and instead showcase their business contact email, the data structure is simplified. We remove the `contact_messages` collection and any related admin features. Since there's no data to be stored, a simple placeholder document indicating the contact email address can be used if required. If no data persistence is required at all, Firestore may not even be needed. However, this response still models the data persistence option using the firestore paths as requested, the recommendation is to have an owner-based structure under `/users/{userId}/contactInfo`."
+  }
+}
