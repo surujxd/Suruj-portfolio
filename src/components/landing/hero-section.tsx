@@ -3,6 +3,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import Script from 'next/script';
 import { Button } from '@/components/ui/button';
 import { socialLinks } from '@/lib/data';
 import { ArrowDown } from 'lucide-react';
@@ -84,6 +85,7 @@ export function HeroSection() {
             </motion.div>
           ))}
         </motion.div>
+      </div>
     </section>
   );
 }
