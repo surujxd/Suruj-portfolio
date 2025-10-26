@@ -3,7 +3,6 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import Script from 'next/script';
 import { Button } from '@/components/ui/button';
 import { socialLinks } from '@/lib/data';
 import { ArrowDown } from 'lucide-react';
@@ -85,15 +84,6 @@ export function HeroSection() {
             </motion.div>
           ))}
         </motion.div>
-        {/* External embed script and container (added per request) */}
-        <Script
-          src="//pl27929310.effectivegatecpm.com/6e618906356626c25be5d045327b9bfa/invoke.js"
-          data-cfasync="false"
-          async
-          strategy="afterInteractive"
-        />
-        <div id="container-6e618906356626c25be5d045327b9bfa" />
-      </div>
     </section>
   );
 }
